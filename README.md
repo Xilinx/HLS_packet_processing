@@ -1,4 +1,4 @@
-# HLS Packet Parsing
+# HLS Packet Processing
 
 This repository contains a set of Vivado HLS libraries supporting networking applications.
 
