@@ -76,7 +76,6 @@ int main(int argc, char *argv[]) {
     MACAddressT macAddress(0x212223242526);
     IPAddressT ipAddress(0x31323334);
     int packetCount;
-    ap_uint<W> data[BEATS_PER_PACKET*1024];
 
     {
         Packet p;
@@ -114,8 +113,7 @@ int main(int argc, char *argv[]) {
         std::cout << "Egress: " << ih << "\n";
         ih.serialize(input);
 
-        //arp_egress((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start);//, arpcache_insert_done);
-        Top((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start, packetCount, data);//, arpcache_insert_done);
+        arp_egress((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start);//, arpcache_insert_done);
 
         ethernet_hdr<Packet> eh(p);
         eh.deserialize(output);
@@ -160,7 +158,6 @@ int main(int argc, char *argv[]) {
         ih.serialize(input);
 
         arp_egress((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start);//, arpcache_insert_done);
-        //Top((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start, packetCount, data);//, arpcache_insert_done);
 
         ethernet_hdr<ipv4_hdr<Packet> > eh(ih);
 
@@ -185,7 +182,6 @@ int main(int argc, char *argv[]) {
         ih.serialize(input);
 
         arp_egress((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start);//, arpcache_insert_done);
-        //Top((MACAddressT)destMAC, (IPAddressT)destIP, input, output, arpcache_insert_start, packetCount, data);//, arpcache_insert_done);
 
         ethernet_hdr<ipv4_hdr<Packet> > eh(ih);
 
@@ -200,4 +196,3 @@ int main(int argc, char *argv[]) {
     }
 
 }
-

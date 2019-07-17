@@ -48,10 +48,3 @@ void arp_egress(ap_uint<48> macAddress, ap_uint<32> ipAddress,
                 stream<arpcache_insert_args> &arpcache_insert_start);//, stream<arpcache_insert_return> &arpcache_insert_done);
 //,
 //              ArpCacheT &arpcache);
-#include "packetRecorder.h"
-void Top(ap_uint<48> macAddress, ap_uint<32> ipAddress,
-         hls::stream<ap_axiu<W,1,1,1>> &in,
-            hls::stream<ap_axiu<W,1,1,1>> &out,
-            hls::stream<arpcache_insert_args> &arpcache_insert_start,
-            int &packetCount,
-         ap_uint<W> data[BEATS_PER_PACKET*1024]);

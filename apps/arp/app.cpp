@@ -217,22 +217,3 @@ void arp_ingress(ap_uint<48> macAddress, ap_uint<32> ipAddress, stream<ap_axiu<W
 
     }
 }
-
-/*
-#include "packetRecorder.cpp"
-void Top(ap_uint<48> macAddress, ap_uint<32> ipAddress,
-         hls::stream<ap_axiu<W,1,1,1>> &in,
-            hls::stream<ap_axiu<W,1,1,1>> &out,
-            hls::stream<arpcache_insert_args> &arpcache_insert_start,
-            int &packetCount,
-            ap_uint<W> data[BEATS_PER_PACKET*1024]) {
-    #pragma HLS dataflow
-    #pragma HLS interface ap_stable port=macAddress
-    #pragma HLS interface ap_stable port=ipAddress
-    hls::stream<ap_axiu<W,1,1,1> > t;
-    arp_egress(macAddress, ipAddress, in, t, arpcache_insert_start);//, arpcache_insert_done);
-    packetRecorder(t, out, false, packetCount, data);
-}
-*/
-
-
