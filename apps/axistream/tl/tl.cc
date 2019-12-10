@@ -13,7 +13,7 @@ void tl(AxiStream<8>& in_stream, AxiStream<8>& output_stream) {
     uint16_t total = 0;
     for (size_t i = 0; i < NUM_INPUTS; i++) {
         HLS_PRAGMA(HLS pipeline II=1);
-        input in = reader.read<input>();
+        input in = reader.read<LengthPolicy::Unchecked, input>();
         total += in.get<input_m::value>();
     }
 

@@ -131,3 +131,22 @@ TEST_CASE("axi_stream_writer_multi_partial_packing_strange_width") {
         util::Bytes<3>("0x000D0C"), ap_uint<3>("0x3"), true
     );
 }
+
+TEST_CASE("axi_stream_writer_zero_width") {
+    AxiStream<8> stream;
+    AxiStreamWriter<8> writer(stream);
+
+    writer.write_raw(util::Bytes<7>("0x06050403020100"), false);
+    writer.flush();
+
+    writer.write_raw(util::Bytes<7>("0x0708090A0B0C0D"), false);
+    writer.flush();
+
+    writer.flush();
+
+    check_stream_contents(stream,
+        util::Bytes<8>("0x06050403020100"), ap_uint<8>("0x7F"), true,
+        util::Bytes<8>("0x0708090A0B0C0D"), ap_uint<8>("0x7F"), true,
+        util::Bytes<8>("0x00000000000000"), ap_uint<8>("0x00"), true
+    );
+}

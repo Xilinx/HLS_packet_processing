@@ -16,30 +16,18 @@
 
 
 #pragma once
-#include "hls_macros.hh"
+#include "message.hh"
+#include <cstdint>
 
-/*
- * Simple array type for use in HLS.
- * This serves as a translatable version of std::array,
- * for cases when an array with value semantics is needed.
- * (As opposed to normal C arrays which decay to pointers.)
- */
-template <typename T, int N>
-struct array {
-    T data[N];
+namespace soup {
+    using namespace message;
 
-    static int size() {
-        HLS_PRAGMA(HLS inline);
-        return N;
-    }
-
-    const T& operator[](int i) const {
-        HLS_PRAGMA(HLS inline);
-        return data[i];
-    }
-
-    T& operator[](int i) {
-        HLS_PRAGMA(HLS inline);
-        return data[i];
-    }
-};
+    // https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/soupbintcp.pdf
+    // Header fields common to every message
+    enum class PACKET_TYPE : uint8_t {
+        SEQUENCED_DATA = 'S',
+    };
+    struct PacketLength : bu16 {};
+    struct PacketType : Enum<PACKET_TYPE, Endianness::LITTLE> {};
+    using Header = Struct<PacketLength, PacketType>::type;
+}

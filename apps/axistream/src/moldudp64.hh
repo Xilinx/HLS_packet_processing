@@ -16,30 +16,20 @@
 
 
 #pragma once
-#include "hls_macros.hh"
 
-/*
- * Simple array type for use in HLS.
- * This serves as a translatable version of std::array,
- * for cases when an array with value semantics is needed.
- * (As opposed to normal C arrays which decay to pointers.)
- */
-template <typename T, int N>
-struct array {
-    T data[N];
+#include "message.hh"
+#include <cstdint>
 
-    static int size() {
-        HLS_PRAGMA(HLS inline);
-        return N;
-    }
+namespace moldudp64 {
+    using namespace message;
 
-    const T& operator[](int i) const {
-        HLS_PRAGMA(HLS inline);
-        return data[i];
-    }
+    // https://www.nasdaqtrader.com/content/technicalsupport/specifications/dataproducts/moldudp64.pdf
+    struct Session : Array<u8, 10> {};
+    struct SequenceNumber : bu64 {};
+    struct MessageCount : bu16 {};
 
-    T& operator[](int i) {
-        HLS_PRAGMA(HLS inline);
-        return data[i];
-    }
-};
+    using Header = Struct<Session, SequenceNumber, MessageCount>::type;
+
+    struct MessageLength : bu16 {};
+    using MessageHeader = Struct<MessageLength>::type;
+}

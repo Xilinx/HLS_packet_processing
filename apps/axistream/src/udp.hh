@@ -16,30 +16,20 @@
 
 
 #pragma once
-#include "hls_macros.hh"
+#include "message.hh"
 
-/*
- * Simple array type for use in HLS.
- * This serves as a translatable version of std::array,
- * for cases when an array with value semantics is needed.
- * (As opposed to normal C arrays which decay to pointers.)
- */
-template <typename T, int N>
-struct array {
-    T data[N];
+namespace udp {
+    using namespace message;
 
-    static int size() {
-        HLS_PRAGMA(HLS inline);
-        return N;
-    }
+    // Header: https://en.wikipedia.org/wiki/User_Datagram_Protocol#Packet_structure
+    struct SourcePort : bu16 {};
+    struct DestinationPort : bu16 {};
+    struct Length : bu16 {};
+    struct Checksum : bu16 {};
 
-    const T& operator[](int i) const {
-        HLS_PRAGMA(HLS inline);
-        return data[i];
-    }
-
-    T& operator[](int i) {
-        HLS_PRAGMA(HLS inline);
-        return data[i];
-    }
-};
+    using Header = Struct<
+        SourcePort,
+        DestinationPort,
+        Length,
+        Checksum>::type;
+}

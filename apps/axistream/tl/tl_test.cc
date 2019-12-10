@@ -1,4 +1,3 @@
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "tl.hh"
 #include "message.hh"
@@ -21,7 +20,7 @@ TEST_CASE("tl") {
 
     tl(input_stream, output_stream);
 
-    output out = reader.read<output>();
+    output out = reader.read<LengthPolicy::Unchecked, output>();
     reader.drain();
 
     CHECK(out.get<output_m::value>() == expected);

@@ -1,3 +1,20 @@
+/*
+ *    Copyright 2017 Two Sigma Open Source, LLC
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+
 #pragma once
 
 #include "hls_macros.hh"
@@ -47,7 +64,7 @@ public:
         const int max_beats = (MsgWidth + DataWidth - 2) / DataWidth + 1;
 
         // Number of bytes which still have to be either buffered or sent
-        ap_uint<util::unsigned_bit_width<MsgWidth>::value> remaining = MsgWidth;
+        util::uint_t<MsgWidth> remaining = MsgWidth;
 
         for (int i = 0; i < max_beats; i++) {
             HLS_PRAGMA(HLS unroll);
@@ -80,6 +97,16 @@ public:
         }
     }
 
+    void flush() {
+        HLS_PRAGMA(HLS inline);
+        Axi<DataWidth> dout;
+        dout.data = buf_;
+        dout.last = true;
+        dout.keep = (~ap_uint<DataWidth>(0)) >>= (DataWidth - len_);
+        stream_.write(dout);
+        reset();
+    }
+
 private:
     void reset() {
         HLS_PRAGMA(HLS inline);
@@ -87,7 +114,7 @@ private:
         buf_ = 0;
     }
 
-    typedef ap_uint<util::unsigned_bit_width<DataWidth>::value> Len;
+    using Len = util::uint_t<DataWidth>;
 
     // low len_ bytes are used
     util::Bytes<DataWidth> buf_;
@@ -95,4 +122,3 @@ private:
 
     AxiStream<DataWidth>& stream_;
 };
-

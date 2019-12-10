@@ -1,0 +1,238 @@
+
+
+================================================================
+== Vivado HLS Report for 'process_packet'
+================================================================
+* Date:           Thu Dec  5 15:26:12 2019
+
+* Version:        2017.3.1 (Build 2033595 on Fri Oct 20 14:40:16 MDT 2017)
+* Project:        process_packet
+* Solution:       solution
+* Product family: virtexuplus
+* Target device:  xcvu9p-flgb2104-3-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   3.10|      2.60|        0.39|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+-----+--------+----------+-----------+-----------+-----------+----------+
+        |                     |    Latency   | Iteration|  Initiation Interval  |    Trip   |          |
+        |      Loop Name      | min |   max  |  Latency |  achieved |   target  |   Count   | Pipelined|
+        +---------------------+-----+--------+----------+-----------+-----------+-----------+----------+
+        |- mold_message_loop  |    0|  458745|   5 ~ 7  |          -|          -| 0 ~ 65535 |    no    |
+        |- read_rest_loop     |    ?|       ?|         1|          1|          1|          ?|    yes   |
+        +---------------------+-----+--------+----------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+---------+---------+-----+
+|       Name      | BRAM_18K| DSP48E|    FF   |   LUT   | URAM|
++-----------------+---------+-------+---------+---------+-----+
+|DSP              |        -|      -|        -|        -|    -|
+|Expression       |        -|      -|        0|     1008|    -|
+|FIFO             |        -|      -|        -|        -|    -|
+|Instance         |        -|      -|        -|        -|    -|
+|Memory           |        -|      -|        -|        -|    -|
+|Multiplexer      |        -|      -|        -|      218|    -|
+|Register         |        -|      -|      428|        -|    -|
++-----------------+---------+-------+---------+---------+-----+
+|Total            |        0|      0|      428|     1226|    0|
++-----------------+---------+-------+---------+---------+-----+
+|Available        |     4320|   6840|  2364480|  1182240|  960|
++-----------------+---------+-------+---------+---------+-----+
+|Utilization (%)  |        0|      0|    ~0   |    ~0   |    0|
++-----------------+---------+-------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+-----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT | Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+-----+------------+------------+
+    |i_1_fu_577_p2                     |     +    |      0|  0|   23|          16|           1|
+    |reader_m_bytesBuffer_3_fu_599_p2  |     +    |      0|  0|   11|           3|           3|
+    |reader_m_bytesBuffer_5_fu_761_p2  |     +    |      0|  0|   11|           2|           3|
+    |reader_m_bytesBuffer_7_fu_794_p2  |     +    |      0|  0|   11|           3|           1|
+    |lastshift_V_fu_644_p2             |     -    |      0|  0|   15|           5|           4|
+    |ap_block_state11                  |    and   |      0|  0|    9|           1|           1|
+    |ap_block_state13                  |    and   |      0|  0|    9|           1|           1|
+    |ap_block_state7                   |    and   |      0|  0|    9|           1|           1|
+    |ap_predicate_op139_read_state11   |    and   |      0|  0|    9|           1|           1|
+    |ap_predicate_op188_read_state14   |    and   |      0|  0|    9|           1|           1|
+    |ap_predicate_op200_read_state17   |    and   |      0|  0|    9|           1|           1|
+    |ap_predicate_op204_write_state17  |    and   |      0|  0|    9|           1|           1|
+    |input_V_id_V0_status              |    and   |      0|  0|    9|           1|           1|
+    |tmp1_fu_487_p2                    |    and   |      0|  0|    9|           1|           1|
+    |tmp2_fu_498_p2                    |    and   |      0|  0|    9|           1|           1|
+    |tmp3_fu_492_p2                    |    and   |      0|  0|    9|           1|           1|
+    |valid_4_fu_503_p2                 |    and   |      0|  0|    9|           1|           1|
+    |done_reading_fu_545_p2            |   icmp   |      0|  0|   11|           8|           1|
+    |exitcond_fu_572_p2                |   icmp   |      0|  0|   13|          16|          16|
+    |icmp_fu_593_p2                    |   icmp   |      0|  0|    8|           2|           1|
+    |tmp_12_fu_768_p2                  |   icmp   |      0|  0|   11|           8|           7|
+    |tmp_13_fu_774_p2                  |   icmp   |      0|  0|   11|           8|           7|
+    |tmp_178_1_fu_629_p2               |   icmp   |      0|  0|    9|           4|           4|
+    |tmp_1_fu_385_p2                   |   icmp   |      0|  0|   24|          48|           2|
+    |tmp_216_3_fu_788_p2               |   icmp   |      0|  0|   11|           5|           4|
+    |tmp_2_fu_399_p2                   |   icmp   |      0|  0|   13|          16|          12|
+    |tmp_3_fu_419_p2                   |   icmp   |      0|  0|   11|           8|           5|
+    |tmp_4_fu_463_p2                   |   icmp   |      0|  0|   20|          32|          32|
+    |tmp_7_fu_481_p2                   |   icmp   |      0|  0|   20|          32|          32|
+    |tmp_s_fu_379_p2                   |   icmp   |      0|  0|   24|          48|          48|
+    |ap_block_state1                   |    or    |      0|  0|    9|           1|           1|
+    |ap_block_state14                  |    or    |      0|  0|    9|           1|           1|
+    |ap_block_state17                  |    or    |      0|  0|    9|           1|           1|
+    |p_tmp_s_fu_449_p2                 |    or    |      0|  0|    9|           1|           1|
+    |itch_message_data_0_fu_754_p3     |  select  |      0|  0|    8|           1|           8|
+    |r_V_fu_531_p3                     |  select  |      0|  0|    8|           1|           8|
+    |t2_V_1_fu_691_p3                  |  select  |      0|  0|  192|           1|         192|
+    |t2_V_3_fu_712_p3                  |  select  |      0|  0|  192|           1|         192|
+    |x_V_fu_733_p3                     |  select  |      0|  0|  192|           1|         192|
+    |r_V_4_fu_539_p2                   |    xor   |      0|  0|   15|           8|           8|
+    +----------------------------------+----------+-------+---+-----+------------+------------+
+    |Total                             |          |      0|  0| 1008|         293|         799|
+    +----------------------------------+----------+-------+---+-----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+----+-----------+-----+-----------+
+    |             Name            | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                    |  89|         18|    1|         18|
+    |done_reading_0_in_i_reg_257  |   9|          2|    8|         16|
+    |i_reg_266                    |   9|          2|   16|         32|
+    |input_V_data_V_blk_n         |   9|          2|    1|          2|
+    |input_V_dest_V_blk_n         |   9|          2|    1|          2|
+    |input_V_id_V_blk_n           |   9|          2|    1|          2|
+    |input_V_keep_V_blk_n         |   9|          2|    1|          2|
+    |input_V_last_V_blk_n         |   9|          2|    1|          2|
+    |input_V_strb_V_blk_n         |   9|          2|    1|          2|
+    |input_V_user_V_blk_n         |   9|          2|    1|          2|
+    |outputMeta_V_V_blk_n         |   9|          2|    1|          2|
+    |outputMeta_V_V_din           |  15|          3|   32|         96|
+    |p_0126_1_i3_1_reg_289        |   9|          2|  192|        384|
+    |reader_m_bytesBuffer_fu_188  |  15|          3|    3|          9|
+    +-----------------------------+----+-----------+-----+-----------+
+    |Total                        | 218|         46|  260|        571|
+    +-----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------+-----+----+-----+-----------+
+    |             Name            |  FF | LUT| Bits| Const Bits|
+    +-----------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                    |   17|   0|   17|          0|
+    |done_reading_0_in_i_reg_257  |    8|   0|    8|          0|
+    |i_1_reg_868                  |   16|   0|   16|          0|
+    |i_reg_266                    |   16|   0|   16|          0|
+    |ih_data_16_reg_825           |    8|   0|    8|          0|
+    |ih_data_17_reg_830           |    8|   0|    8|          0|
+    |p_0126_1_i3_1_reg_289        |  192|   0|  192|          0|
+    |p_Result_44_1_reg_860        |   16|   0|   16|          0|
+    |reader_m_buffer_V_reg_277    |   64|   0|   64|          0|
+    |reader_m_bytesBuffer_fu_188  |    3|   0|    3|          0|
+    |s2_V_reg_905                 |    1|   0|    1|          0|
+    |tmp_12_reg_925               |    1|   0|    1|          0|
+    |tmp_13_reg_929               |    1|   0|    1|          0|
+    |tmp_178_1_reg_896            |    1|   0|    1|          0|
+    |tmp_18_reg_910               |    1|   0|    1|          0|
+    |tmp_19_reg_915               |    1|   0|    1|          0|
+    |tmp_1_reg_810                |    1|   0|    1|          0|
+    |tmp_20_reg_920               |    1|   0|    1|          0|
+    |tmp_216_3_reg_933            |    1|   0|    1|          0|
+    |tmp_2_reg_815                |    1|   0|    1|          0|
+    |tmp_3_reg_820                |    1|   0|    1|          0|
+    |tmp_5_reg_881                |    3|   0|    4|          1|
+    |tmp_data_V_7_reg_886         |   64|   0|   64|          0|
+    |tmp_s_reg_805                |    1|   0|    1|          0|
+    |valid_4_reg_835              |    1|   0|    1|          0|
+    +-----------------------------+-----+----+-----+-----------+
+    |Total                        |  428|   0|  429|          1|
+    +-----------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+-----------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |  Source Object  |    C Type    |
++------------------------+-----+-----+------------+-----------------+--------------+
+|ap_clk                  |  in |    1| ap_ctrl_hs |  process_packet | return value |
+|ap_rst_n                |  in |    1| ap_ctrl_hs |  process_packet | return value |
+|ap_start                |  in |    1| ap_ctrl_hs |  process_packet | return value |
+|ap_done                 | out |    1| ap_ctrl_hs |  process_packet | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs |  process_packet | return value |
+|ap_ready                | out |    1| ap_ctrl_hs |  process_packet | return value |
+|macAddresst_V           |  in |   48|   ap_none  |  macAddresst_V  |    scalar    |
+|ipAddress_V             |  in |   32|   ap_none  |   ipAddress_V   |    scalar    |
+|port_r                  |  in |   32|   ap_none  |      port_r     |    scalar    |
+|input_V_data_V_dout     |  in |   64|   ap_fifo  |  input_V_data_V |    pointer   |
+|input_V_data_V_empty_n  |  in |    1|   ap_fifo  |  input_V_data_V |    pointer   |
+|input_V_data_V_read     | out |    1|   ap_fifo  |  input_V_data_V |    pointer   |
+|input_V_keep_V_dout     |  in |    8|   ap_fifo  |  input_V_keep_V |    pointer   |
+|input_V_keep_V_empty_n  |  in |    1|   ap_fifo  |  input_V_keep_V |    pointer   |
+|input_V_keep_V_read     | out |    1|   ap_fifo  |  input_V_keep_V |    pointer   |
+|input_V_strb_V_dout     |  in |    8|   ap_fifo  |  input_V_strb_V |    pointer   |
+|input_V_strb_V_empty_n  |  in |    1|   ap_fifo  |  input_V_strb_V |    pointer   |
+|input_V_strb_V_read     | out |    1|   ap_fifo  |  input_V_strb_V |    pointer   |
+|input_V_user_V_dout     |  in |    1|   ap_fifo  |  input_V_user_V |    pointer   |
+|input_V_user_V_empty_n  |  in |    1|   ap_fifo  |  input_V_user_V |    pointer   |
+|input_V_user_V_read     | out |    1|   ap_fifo  |  input_V_user_V |    pointer   |
+|input_V_last_V_dout     |  in |    1|   ap_fifo  |  input_V_last_V |    pointer   |
+|input_V_last_V_empty_n  |  in |    1|   ap_fifo  |  input_V_last_V |    pointer   |
+|input_V_last_V_read     | out |    1|   ap_fifo  |  input_V_last_V |    pointer   |
+|input_V_id_V_dout       |  in |    1|   ap_fifo  |   input_V_id_V  |    pointer   |
+|input_V_id_V_empty_n    |  in |    1|   ap_fifo  |   input_V_id_V  |    pointer   |
+|input_V_id_V_read       | out |    1|   ap_fifo  |   input_V_id_V  |    pointer   |
+|input_V_dest_V_dout     |  in |    1|   ap_fifo  |  input_V_dest_V |    pointer   |
+|input_V_dest_V_empty_n  |  in |    1|   ap_fifo  |  input_V_dest_V |    pointer   |
+|input_V_dest_V_read     | out |    1|   ap_fifo  |  input_V_dest_V |    pointer   |
+|output_V_data_V         |  in |   64|   ap_none  | output_V_data_V |    pointer   |
+|output_V_keep_V         |  in |    8|   ap_none  | output_V_keep_V |    pointer   |
+|output_V_strb_V         |  in |    8|   ap_none  | output_V_strb_V |    pointer   |
+|output_V_user_V         |  in |    1|   ap_none  | output_V_user_V |    pointer   |
+|output_V_last_V         |  in |    1|   ap_none  | output_V_last_V |    pointer   |
+|output_V_id_V           |  in |    1|   ap_none  |  output_V_id_V  |    pointer   |
+|output_V_dest_V         |  in |    1|   ap_none  | output_V_dest_V |    pointer   |
+|outputMeta_V_V_din      | out |   32|   ap_fifo  |  outputMeta_V_V |    pointer   |
+|outputMeta_V_V_full_n   |  in |    1|   ap_fifo  |  outputMeta_V_V |    pointer   |
+|outputMeta_V_V_write    | out |    1|   ap_fifo  |  outputMeta_V_V |    pointer   |
++------------------------+-----+-----+------------+-----------------+--------------+
+

@@ -38,7 +38,7 @@ TEST_CASE("message_basic") {
     CHECK(t1::to_raw(x) == 0x3412ABCD);
 
     t2 y;
-    util::array<t1, 2> z;
+    array<t1, 2> z;
     z[0] = x;
     x.set<f1>(0xBEEF);
     x.set<f2>(0xDEAD);
