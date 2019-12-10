@@ -1,0 +1,5 @@
+build
+bin
+*.swp
+mold_example/mold_example
+mold_example/mold_remover_stream

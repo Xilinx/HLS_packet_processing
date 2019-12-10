@@ -103,7 +103,7 @@ void process_packet(ap_uint<48> macAddresst, ap_uint<32> ipAddress, int port,
             //std::cout << "message:" << (char)itch_message.get<messageType>() << "\n";
             if(itch_message.get<messageType>() == 'R') {
                 itch::directory_header m;
-                reader.read_rest();//
+                // reader.read_rest();//
                 //reader.get(m);
                 //auto itch_directory_message = parse_itch_directory_hdr(message);
                 // itch_directory_message.serialize(output);
